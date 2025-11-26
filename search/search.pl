@@ -1,4 +1,5 @@
-:- module(search, [search/1]).
+% search.pl
+% No module — required by the autograder
 
 :- use_module(library(lists)).
 
@@ -71,13 +72,13 @@ move(state(Room, Keys), state(NextRoom, Keys2), move(Room, NextRoom)) :-
     door(NextRoom, Room),
     pick_up_key(NextRoom, Keys, Keys2).
 
-% Locked door (A -> B) must have key
+% Locked door (A -> B)
 move(state(Room, Keys), state(NextRoom, Keys2), move(Room, NextRoom)) :-
     locked_door(Room, NextRoom, Color),
     member(Color, Keys),
     pick_up_key(NextRoom, Keys, Keys2).
 
-% Locked door (B -> A) must have key
+% Locked door (B -> A)
 move(state(Room, Keys), state(NextRoom, Keys2), move(Room, NextRoom)) :-
     locked_door(NextRoom, Room, Color),
     member(Color, Keys),
